@@ -1,0 +1,20 @@
+{
+  "name": "Walkman",
+  "short_name": "Walkman",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090c13",
+  "theme_color": "#0168ed",
+  "icons": [
+    {
+      "src": "/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
