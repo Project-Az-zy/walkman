@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum Walkman</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Define a base hue and derive all colors from it */
         :root {
-            --base-hue: 260; /* A purple/indigo hue */
-            --primary-dark: hsl(var(--base-hue), 40%, 10%); /* Very dark background */
-            --primary-med-dark: hsl(var(--base-hue), 50%, 15%); /* Darker container */
-            --primary-darker-gradient-start: hsl(calc(var(--base-hue) + 10), 60%, 18%); /* Indigo-like start */
-            --primary-darker-gradient-end: hsl(calc(var(--base-hue) - 10), 60%, 12%); /* Purple-like end */
-            --accent-main: hsl(calc(var(--base-hue) + 100), 70%, 50%); /* Teal/Cyan accent */
-            --accent-light: hsl(calc(var(--base-hue) + 100), 80%, 70%); /* Lighter accent for text */
-            --text-light: hsl(var(--base-hue), 10%, 90%); /* Light gray text */
-            --text-medium: hsl(var(--base-hue), 10%, 70%); /* Medium gray text */
-            --border-light: hsl(var(--base-hue), 30%, 40%); /* Light purple border */
-            --button-bg: hsl(var(--base-hue), 60%, 35%); /* Purple button */
-            --button-hover: hsl(var(--base-hue), 60%, 45%); /* Darker purple button hover */
-            --button-text: hsl(var(--base-hue), 20%, 90%); /* Light text on buttons */
+            --base-hue: 260;
+            /* A purple/indigo hue */
+            --primary-dark: hsl(var(--base-hue), 40%, 10%);
+            /* Very dark background */
+            --primary-med-dark: hsl(var(--base-hue), 50%, 15%);
+            /* Darker container */
+            --primary-darker-gradient-start: hsl(calc(var(--base-hue) + 10), 60%, 18%);
+            /* Indigo-like start */
+            --primary-darker-gradient-end: hsl(calc(var(--base-hue) - 10), 60%, 12%);
+            /* Purple-like end */
+            --accent-main: hsl(calc(var(--base-hue) + 100), 70%, 50%);
+            /* Teal/Cyan accent */
+            --accent-light: hsl(calc(var(--base-hue) + 100), 80%, 70%);
+            /* Lighter accent for text */
+            --text-light: hsl(var(--base-hue), 10%, 90%);
+            /* Light gray text */
+            --text-medium: hsl(var(--base-hue), 10%, 70%);
+            /* Medium gray text */
+            --border-light: hsl(var(--base-hue), 30%, 40%);
+            /* Light purple border */
+            --button-bg: hsl(var(--base-hue), 60%, 35%);
+            /* Purple button */
+            --button-hover: hsl(var(--base-hue), 60%, 45%);
+            /* Darker purple button hover */
+            --button-text: hsl(var(--base-hue), 20%, 90%);
+            /* Light text on buttons */
         }
 
         body {
@@ -34,7 +46,8 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 16px; /* Responsive padding */
+            padding: 16px;
+            /* Responsive padding */
             box-sizing: border-box;
             color: var(--text-light);
         }
@@ -44,14 +57,17 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: var(--primary-med-dark);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--button-bg);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--button-hover);
         }
@@ -60,72 +76,111 @@
         .bg-player-gradient {
             background-image: linear-gradient(to bottom right, var(--primary-darker-gradient-start), var(--primary-darker-gradient-end));
         }
+
         .text-accent-gradient {
             background-image: linear-gradient(to right, var(--accent-light), var(--accent-main));
         }
+
         .bg-progress-bar-track {
             background-color: var(--primary-med-dark);
         }
+
         .bg-progress-bar-fill {
             background-image: linear-gradient(to right, var(--accent-light), var(--accent-main));
         }
+
         .border-album-art {
             border-color: var(--border-light);
         }
+
         .text-button-inactive {
             color: var(--button-text);
         }
+
         .text-button-active {
             color: var(--text-light);
         }
+
         .bg-button-main {
             background-color: var(--button-bg);
         }
+
         .hover-bg-button-main:hover {
             background-color: var(--button-hover);
         }
+
         .focus-ring-button {
-            box-shadow: 0 0 0 4px hsl(var(--base-hue), 60%, 45%, 0.5); /* Semi-transparent ring */
+            box-shadow: 0 0 0 4px hsl(var(--base-hue), 60%, 45%, 0.5);
+            /* Semi-transparent ring */
         }
+
         .hover-text-accent:hover {
             color: var(--accent-light);
         }
+
         .bg-blob-purple {
-            background-color: hsl(calc(var(--base-hue) - 30), 70%, 50%); /* Slightly redder purple */
+            background-color: hsl(calc(var(--base-hue) - 30), 70%, 50%);
+            /* Slightly redder purple */
         }
+
         .bg-blob-indigo {
-            background-color: hsl(calc(var(--base-hue) + 30), 70%, 50%); /* Slightly bluer indigo */
+            background-color: hsl(calc(var(--base-hue) + 30), 70%, 50%);
+            /* Slightly bluer indigo */
         }
+
         .bg-blob-pink {
-            background-color: hsl(calc(var(--base-hue) + 120), 70%, 50%); /* Pinkish/magenta hue for third blob */
+            background-color: hsl(calc(var(--base-hue) + 120), 70%, 50%);
+            /* Pinkish/magenta hue for third blob */
         }
+
         .selection\:bg-purple-600::selection {
             background-color: var(--button-bg);
         }
+
         .selection\:text-white::selection {
             color: var(--text-light);
         }
 
 
         @keyframes progress-fill {
-            0% { width: 0%; }
-            50% { width: 60%; } /* Static fill for dummy */
-            100% { width: 60%; }
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 60%;
+            }
+
+            /* Static fill for dummy */
+            100% {
+                width: 60%;
+            }
         }
+
         .animate-progress-fill {
-            animation: progress-fill 3s ease-out forwards; /* Dummy animation */
+            animation: progress-fill 3s ease-out forwards;
+            /* Dummy animation */
         }
 
         @keyframes pulse-slow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
+
         .animate-pulse-slow {
             animation: pulse-slow 5s infinite ease-in-out;
         }
     </style>
     <link rel="manifest" href="/manifest.json">
 </head>
+
 <body class="selection:bg-purple-600 selection:text-white">
 
     <!-- Main Player Container -->
@@ -134,21 +189,28 @@
                 transform transition-all duration-500 hover:scale-[1.01] hover:shadow-purple-800/50">
 
         <!-- Abstract Background Shape -->
-        <div class="absolute -top-10 -left-10 w-48 h-48 bg-blob-purple rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
-        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-blob-indigo rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
-        <div class="absolute top-1/4 right-1/4 w-32 h-32 bg-blob-pink rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div
+            class="absolute -top-10 -left-10 w-48 h-48 bg-blob-purple rounded-full mix-blend-multiply filter blur-xl opacity-20">
+        </div>
+        <div
+            class="absolute -bottom-10 -right-10 w-48 h-48 bg-blob-indigo rounded-full mix-blend-multiply filter blur-xl opacity-20">
+        </div>
+        <div
+            class="absolute top-1/4 right-1/4 w-32 h-32 bg-blob-pink rounded-full mix-blend-multiply filter blur-xl opacity-20">
+        </div>
 
         <!-- Content Wrapper -->
         <div class="relative z-10 flex flex-col items-center space-y-6">
 
-            <!-- Header -->
-            <h1 class="text-3xl font-bold bg-clip-text text-accent-gradient animate-pulse-slow">
-                Now Hypnotizing...
+            <h1 id="mood-header"
+                class="text-3xl font-bold bg-clip-text text-transparent text-accent-gradient animate-pulse-slow">
+                ...
             </h1>
 
             <div id="album-art" class="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-lg
                         border-4 border-album-art transform hover:rotate-3 transition-transform duration-300">
-                <img src="https://placehold.co/500x500/6A057E/FFFFFF?text=Abstract+Rhythm" alt="Abstract Album Art" class="w-full h-full object-cover">
+                <img src="https://placehold.co/500x500/6A057E/FFFFFF?text=Abstract+Rhythm" alt="Abstract Album Art"
+                    class="w-full h-full object-cover">
             </div>
 
             <!-- Song Info -->
@@ -168,17 +230,34 @@
 
             <!-- Playback Controls -->
             <div class="flex justify-around w-full mt-4">
-                <button class="p-3 text-2xl text-button-inactive hover:text-button-active rounded-full transition-colors duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus-ring-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-back"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" x2="5" y1="19" y2="5"/></svg>
-                </button>
-                <button class="p-4 bg-button-main hover-bg-button-main text-button-active rounded-full shadow-lg transition-all duration-300
-                                transform hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus-ring-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause-circle">
-                        <circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/>
+                <button
+                    class="p-3 text-2xl text-button-inactive hover:text-button-active rounded-full transition-colors duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus-ring-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-skip-back">
+                        <polygon points="19 20 9 12 19 4 19 20" />
+                        <line x1="5" x2="5" y1="19" y2="5" />
                     </svg>
                 </button>
-                <button class="p-3 text-2xl text-button-inactive hover:text-button-active rounded-full transition-colors duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus-ring-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg>
+                <button
+                    class="p-4 bg-button-main hover-bg-button-main text-button-active rounded-full shadow-lg transition-all duration-300
+                                transform hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus-ring-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-pause-circle">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="10" x2="10" y1="15" y2="9" />
+                        <line x1="14" x2="14" y1="15" y2="9" />
+                    </svg>
+                </button>
+                <button
+                    class="p-3 text-2xl text-button-inactive hover:text-button-active rounded-full transition-colors duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus-ring-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-skip-forward">
+                        <polygon points="5 4 15 12 5 20 5 4" />
+                        <line x1="19" x2="19" y1="5" y2="19" />
+                    </svg>
                 </button>
             </div>
 
@@ -186,24 +265,77 @@
     </div>
 
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/pwa-worker.js')
-            .then((registration) => {
-              console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-              console.error('Service Worker registration failed:', error);
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/pwa-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
             });
-        });
-      }
+        }
     </script>
 
     <script>
+        class Mood {
+            static currentMood = null
+            constructor(title) {
+                this.title = title + '...'
+            }
+
+            activate() {
+                Mood.currentMood = this
+                document.querySelector("#mood-header").textContent = this.title
+            }
+        }
+        new Mood("Proving concepts").activate()
+
+
+        class AudioProxy {
+            constructor(id) {
+                this.id = id
+                this.audio = new Audio(`audio/${id}.mp3`)
+            }
+            play() {
+                this.audio.play();
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: "Song title",
+                        artist: Mood.currentMood.title,
+                        artwork: [
+                            { src: "icons/192.png", sizes: '96x96', type: 'image/png' },
+                            { src: "icons/192.png", sizes: '128x128', type: 'image/png' },
+                            { src: "icons/192.png", sizes: '192x192', type: 'image/png' },
+                            { src: "icons/512.png", sizes: '256x256', type: 'image/png' },
+                            { src: "icons/512.png", sizes: '384x384', type: 'image/png' },
+                            { src: "icons/512.png", sizes: '512x512', type: 'image/png' }
+                        ]
+                    });
+                }
+            }
+            stop() {
+                this.audio.stop()
+            }
+            is(id) {
+                return this.id === id
+            }
+
+            static currentAudio = null
+            static playById(id) {
+                console.log(`Playing ${id}`)
+                if (!AudioProxy.currentAudio?.is(id)) {
+                    AudioProxy.currentAudio?.stop()
+                    AudioProxy.currentAudio = new AudioProxy(id)
+                }
+                AudioProxy.currentAudio.play()
+            }
+        }
         document.querySelector("#album-art").onclick = () => {
-            var audio = new Audio('audio/RdyJwBT0TSM.mp3');
-            audio.play();
+            AudioProxy.playById('RdyJwBT0TSM')
         }
     </script>
 </body>
+
 </html>
